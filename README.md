@@ -1,1 +1,2 @@
 # pokedex
+Exercicio - Manual Dev
