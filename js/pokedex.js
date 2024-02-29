@@ -8,8 +8,10 @@ const form = document.querySelector('.form');
 const input = document.querySelector('.input--search');
 const buttonPrev = document.querySelector('.btn--prev');
 const buttonNext = document.querySelector('.btn--next');
+const buttonStart = document.querySelector('.btn--start');
 
 let searchPokemon = 1;
+let on;
 
 const fetchPokemon = async pokemon => {
   const APIResponse = await fetch(
@@ -35,49 +37,57 @@ const typeIcon = async pokemon => {
 }
 
 const renderPokemon = async pokemon => {
+  pokemonName.innerHTML = `Loading...`;
   const data = await fetchPokemon(pokemon);
-  const loading = 'Loading ...'
   pokemonType.innerHTML = '';
-  
-  
-  if (data) {
-    let types = await typeIcon(pokemon);
-    
-    
-    pokemonImage.style.display = 'block';
-    pokemonName.innerHTML = data.name;
-    pokemonNumber.innerHTML = data.id;
-    pokemonImage.src =
-    data['sprites']['versions']['generation-v']['black-white']['animated'][
-      'front_default'
-    ];
-    pokemonCry(data)
-    
-    for (let i = 0; i < types.length; i++) {
-      pokemonType.innerHTML += `<img src="img/icons/${types[i]}.svg" alt="pokemon type" class="pokemon--type">`
-    }
 
-    input.value = '';
-    searchPokemon = data.id;
-  } else {
-    pokemonImage.style.display = 'none';
-    pokemonNumber.innerHTML = '';
-    pokemonType.innerHTML = '';
-    pokemonName.innerHTML = 'Not found';
+    if (data) {
+      let types = await typeIcon(pokemon);
+      pokemonImage.style.display = 'block';
+      pokemonName.innerHTML = data.name;
+      pokemonNumber.innerHTML = ` #${data.id}`;
+      pokemonImage.src =
+        data['sprites']['versions']['generation-v']['black-white']['animated'][
+        'front_default'
+        ];
+      pokemonCry(data)
+
+      for (let i = 0; i < types.length; i++) {
+        pokemonType.innerHTML += `<img src="img/icons/${types[i]}.svg" alt="pokemon type" class="pokemon--type">`
+      }
+
+      input.value = '';
+      searchPokemon = data.id;
+    } else {
+      pokemonImage.style.display = 'none';
+      pokemonNumber.innerHTML = '';
+      pokemonType.innerHTML = '';
+      pokemonName.innerHTML = 'Not found';
+    }
   }
-};
+
 
 const pokemonCry = (pokemon) => {
   let crie = pokemon['cries']['legacy']
 
-  pokemonCrie.volume = 0.2
+  pokemonCrie.volume = 0.1
   pokemonCrie.src = `${crie}`
+}
+
+const loadingPokemon = (pokemon) => {
+  pokemonImage.style.display = 'none';
+  pokemonNumber.innerHTML = '';
+  pokemonType.innerHTML = '';
+
+  setTimeout(() => {
+    renderPokemon(input.value.toLowerCase());
+    pokemonType.innerHTML = ''
+  }, 2000)
 }
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  renderPokemon(input.value.toLowerCase());
-  pokemonType.innerHTML = ''
+  loadingPokemon()
 });
 
 buttonPrev.addEventListener('click', () => {
@@ -94,4 +104,8 @@ buttonNext.addEventListener('click', () => {
   pokemonType.innerHTML = ''
 });
 
-renderPokemon(1);
+buttonStart.addEventListener('click', () => {
+  setTimeout(() => {
+    renderPokemon(1)
+  }, 1000)
+})
