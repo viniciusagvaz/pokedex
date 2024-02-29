@@ -1,6 +1,8 @@
 const pokemonName = document.querySelector('.pokemon--name');
 const pokemonNumber = document.querySelector('.pokemon--number');
 const pokemonImage = document.querySelector('.pokemon--image');
+const pokemonType = document.querySelector('.pokemon--type');
+const pokemonCrie = document.querySelector('.pokemon--crie');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input--search');
@@ -9,51 +11,87 @@ const buttonNext = document.querySelector('.btn--next');
 
 let searchPokemon = 1;
 
-const fetchPokemon = async (pokemon) =>{
-   const APIResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+const fetchPokemon = async pokemon => {
+  const APIResponse = await fetch(
+    `https://pokeapi.co/api/v2/pokemon/${pokemon}`
+  );
 
-   if (APIResponse.status === 200){
-   const data = await APIResponse.json();
-   return data;
-   }
+  if (APIResponse.status === 200) {
+    const data = await APIResponse.json();
+    return data;
+  }
+
+  return
+};
+
+const typeIcon = async pokemon => {
+  const data = await fetchPokemon(pokemon);
+  const iconsList = await fetch('./js/datatype.js');
+
+  const types = data['types'];
+  let typeNames = types.map(slot => slot['type']['name']);
+
+  return typeNames
 }
 
-const renderPokemon = async (pokemon) => {
+const renderPokemon = async pokemon => {
+  const data = await fetchPokemon(pokemon);
+  const loading = 'Loading ...'
+  pokemonType.innerHTML = '';
+  
+  
+  if (data) {
+    let types = await typeIcon(pokemon);
+    
+    
+    pokemonImage.style.display = 'block';
+    pokemonName.innerHTML = data.name;
+    pokemonNumber.innerHTML = data.id;
+    pokemonImage.src =
+    data['sprites']['versions']['generation-v']['black-white']['animated'][
+      'front_default'
+    ];
+    pokemonCry(data)
+    
+    for (let i = 0; i < types.length; i++) {
+      pokemonType.innerHTML += `<img src="img/icons/${types[i]}.svg" alt="pokemon type" class="pokemon--type">`
+    }
 
-   pokemonName.innerHTML ='Loading ...'
+    input.value = '';
+    searchPokemon = data.id;
+  } else {
+    pokemonImage.style.display = 'none';
+    pokemonNumber.innerHTML = '';
+    pokemonType.innerHTML = '';
+    pokemonName.innerHTML = 'Not found';
+  }
+};
 
-   const data = await fetchPokemon(pokemon);
+const pokemonCry = (pokemon) => {
+  let crie = pokemon['cries']['legacy']
 
-   if(data){
-      pokemonImage.style.display = 'block';
-      pokemonName.innerHTML = data.name;
-      pokemonNumber.innerHTML = data.id;
-      pokemonImage.src = data['sprites']['versions']['generation-v']['black-white']['animated']['front_default']
-      
-      input.value = '';
-      searchPokemon =data.id;
-   } else {
-      pokemonImage.style.display = 'none';
-      pokemonNumber.innerHTML = ""
-      pokemonName.innerHTML = 'Not found'
-   }
+  pokemonCrie.volume = 0.2
+  pokemonCrie.src = `${crie}`
 }
 
-form.addEventListener('submit', (event) =>{
-   event.preventDefault();
-   renderPokemon(input.value.toLowerCase());
+form.addEventListener('submit', event => {
+  event.preventDefault();
+  renderPokemon(input.value.toLowerCase());
+  pokemonType.innerHTML = ''
 });
 
-buttonPrev.addEventListener('click',()=>{
-   if(searchPokemon > 1){
-   searchPokemon -= 1;
-   renderPokemon(searchPokemon);
-   }
-})
+buttonPrev.addEventListener('click', () => {
+  if (searchPokemon > 1) {
+    searchPokemon -= 1;
+    renderPokemon(searchPokemon);
+    pokemonType.innerHTML = ''
+  }
+});
 
-buttonNext.addEventListener('click',()=>{
-   searchPokemon += 1;
-   renderPokemon(searchPokemon);
-})
+buttonNext.addEventListener('click', () => {
+  searchPokemon += 1;
+  renderPokemon(searchPokemon);
+  pokemonType.innerHTML = ''
+});
 
-renderPokemon('1')
+renderPokemon(1);
