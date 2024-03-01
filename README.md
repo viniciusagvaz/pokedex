@@ -8,7 +8,7 @@ Pokedex V1
 
 ### This is a Pokedex similar to the original anime design
 
-**Made it in Vanilla JavaScript, HTML, and CSS and it was based on \*\*Manual do Dev** original project  
+Made it in Vanilla JavaScript, HTML, and CSS and it was based on _**Manual do Dev**_ original project  
 
 ### **New Features:**
 
@@ -42,7 +42,7 @@ Pokedex V1
 
 ### Este é um Pokédex semelhante ao design original do anime
 
-**Feito em Vanilla JavaScript, HTML e CSS e foi baseado no projeto original do \*\*Manual do Dev**
+Feito em Vanilla JavaScript, HTML e CSS e foi baseado no projeto original do _**Manual do Dev**_
 
 ### **Novas características:**
 
