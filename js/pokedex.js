@@ -6,9 +6,8 @@ const pokemonCrie = document.querySelector('.pokemon--crie');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input--search');
-const buttonPrev = document.querySelector('.btn--prev');
-const buttonNext = document.querySelector('.btn--next');
-const buttonStart = document.querySelector('.btn--start');
+const buttonPrev = document.querySelector('.bttn--prev');
+const buttonNext = document.querySelector('.bttn--next');
 
 let searchPokemon = 1;
 
