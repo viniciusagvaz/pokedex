@@ -20,8 +20,8 @@ const fetchPokemon = async pokemon => {
   if (APIResponse.status === 200) {
     const data = await APIResponse.json();
     return data;
-  } 
- 
+  }
+
   return
 };
 
@@ -49,12 +49,12 @@ const renderPokemon = async (pokemon = 1) => {
   if (data) {
     const types = await fetchTypes(pokemon);
     const sprite = data['sprites']['front_default'];
-    
+
     pokemonImage.style.display = 'block';
     pokemonImage.src = sprite;
     pokemonNumber.innerHTML = `#${data.id}`;
     pokemonName.innerHTML = `${data.name}`;
-    
+
     for (let i = 0; i < types.length; i++) {
       pokemonType.innerHTML += `
       <img src="img/icons/${types[i]}.svg" alt="pokemon type" class="pokemon--type">
@@ -62,7 +62,7 @@ const renderPokemon = async (pokemon = 1) => {
     }
 
     playCrie(data)
-    
+
     input.value = '';
     searchPokemon = data.id;
   } else {
@@ -75,7 +75,7 @@ const renderPokemon = async (pokemon = 1) => {
 
 form.addEventListener('submit', event => {
   event.preventDefault();
-  renderPokemon(input.value.toLowerCase());
+  renderPokemon(input.value.toLowerCase().trim());
 });
 
 buttonPrev.addEventListener('click', () => {
