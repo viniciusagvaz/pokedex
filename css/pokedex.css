@@ -8,135 +8,140 @@
 }
 
 body {
-  text-align: center;
-  background: linear-gradient(to bottom, #6ab7f5, #ffffff);
   min-height: 100vh;
+  text-align: center;
+
+  background-image: url('../img/background/pokedex-bg.webp');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 main {
+  position: relative;
+
   display: inline-block;
+
   margin-top: 2%;
   padding: 15px;
-  position: relative;
-}
-
-.off{
-  display: none;
 }
 
 .pokedex {
-  width: 100%;
   max-width: 425px;
+  width: 100%;
+  height: 100%;
 }
 
 .pokemon--image {
   position: absolute;
-  bottom: 55%;
   left: 50%;
+  bottom: 52%;
   transform: translate(-63%, 20%);
-  height: 16%;
+
+  width: 30%;
 }
 
 .pokemon--data {
   position: absolute;
-  font-weight: 600;
-  color: #aaa;
   top: 54.5%;
   right: 27%;
-  font-size: clamp(5px, 5vw, 20px);
 
-  width: max(190px, calc(5vw - 100px));
-  
+  width: max(200px, calc(5vw - 100px));
+  height: fit-content;
+  padding: 0.2rem;
+
   display: flex;
-  align-items: flex-start;
-
+  align-items: baseline;
   justify-content: space-between;
-  text-align: center;
-  align-items: center;
+  gap: 0.2em;
 
-  gap: .2em;
+  font-size: clamp(5px, 5vw, 18px);
+  font-weight: 600;
+  color: #aaa;
+
   background-color: #222;
   border-radius: 4px;
   border: 2px solid #444;
 }
 
-.pokemon--number{
+.pokemon--number {
   font-style: italic;
   font-size: 1rem;
 }
 
 .pokemon--name {
-  justify-content: center;
-  text-align: center;
   color: #aaa;
   text-transform: capitalize;
-  align-items: center;
-  
 }
 
 .pokemon--type {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
   width: 2.25rem;
   height: 1.5rem;
+  padding: 0.1rem;
+
   background-color: #111;
   border-radius: 4px;
   border: 2px solid #444;
 }
 
 .pokemon--type img {
-  margin: 2px;
+  width: 1rem;
+  height: fit-content;
+
   font-size: clamp(8px, 5vw, 20px);
-  width: .7rem;
   border: none;
-  height: .7rem;
 }
 
 .form {
   position: absolute;
-  width: 65%;
-  top: 65%;
   left: 13.5%;
+  top: 65%;
+  
+  width: 65%;
 }
 
 .input--search {
   width: 100%;
   padding: 4%;
-  outline: none;
+  
+  font-size: clamp(8px, 5vw, 1rem);
+  font-weight: 600;
+  color: #709cc3;
+  
   border: 2px solid #333;
   border-radius: 5px;
-  font-weight: 600;
-  color: #3a444d;
-  font-size: clamp(8px, 5vw, 1rem);
+  outline: none;
   box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
 }
 
 .buttons--area {
   position: absolute;
-  bottom: 10%;
   left: 50%;
+  bottom: 10%;
+
+  display: flex;
+  gap: 1.15rem;
+  
   width: 65%;
   transform: translate(-57%, 0);
-  display: flex;
-  gap: 20px;
 }
 
 .button {
   width: 50%;
   padding: 4%;
-  border: 2px solid #000;
+
   font-size: clamp(8px, 5vw, 1rem);
   color: #ffffff;
+
   background-color: #444;
+  border: 2px solid #000;
   box-shadow: -2px 3px 0 #222, -4px 5px 0 #000;
 }
 
 .button:active {
-  box-shadow: inset -4px 4px 0 #222;
   font-size: 0.9rem;
-}
-
-.battle--info {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  box-shadow: inset -4px 4px 0 #222;
 }
