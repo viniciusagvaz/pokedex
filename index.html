@@ -2,102 +2,61 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta
-			http-equiv="X-UA-Compatible"
-			content="IE=edge"
-		/>
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link
 			rel="shortcut icon"
 			href="./img/pokedex-fav.ico"
 			type="image/x-icon"
 		/>
-		<link
-			rel="stylesheet"
-			href="./css/pokedex.css"
-		/>
+		<link rel="stylesheet" href="./css/pokedex.css" />
 
 		<title>Pokedex</title>
 	</head>
 
 	<body>
 		<main>
-			<img
-				src="./img/pokedex.webp"
-				alt="pokedex"
-				class="pokedex"
-			/>
+			<img src="./img/pokedex.webp" alt="pokedex" class="pokedex" />
 			<audio
 				src=""
 				alt="Pokemon Sound"
 				type="pokemon cry"
 				autoplay
-				class="pokemon--crie"
+				class="pokemon-crie"
 			></audio>
 
-			<div
-				alt="Pokedex Screen"
-				class="pokedex--screen"
-			>
-				<img
-					src="#"
-					alt="Pokemon Image"
-					class="pokemon--image"
-				/>
+			<div alt="Pokedex Screen" class="pokedex-screen">
+				<img src="#" alt="Pokemon Image" class="pokemon-image" />
 			</div>
 
-			<div
-				alt="Pokemon Data"
-				class="pokemon--data"
-			>
-				<div class="number--name--container">
-					<span
-						alt="Pokemon Number"
-						class="pokemon--number"
-					></span>
-					<span
-						alt="Pokemon Name"
-						class="pokemon--name"
-					></span>
+			<div alt="Pokemon Data" class="pokemon-data">
+				<div class="number-name-container">
+					<span alt="Pokemon Number" class="pokemon-number"></span>
+					<span alt="Pokemon Name" class="pokemon-name"></span>
 				</div>
-				<span
-					alt="Pokemon Type"
-					class="pokemon--type"
-				></span>
+				
+        <div class="pokemon-type-container">
+					<span alt="Pokemon Type" class="pokemon-type"></span>
+				</div>
 			</div>
 
-			<form
-				alt="Search Form"
-				id="form"
-				class="form"
-			>
+			<form alt="Search Form" id="form" class="form">
 				<input
 					alt="Search Input"
-					id="input--search"
+					id="input-search"
 					type="search"
-					class="input--search"
+					class="input-search"
 					placeholder="Name or Number"
 					required
 				/>
 			</form>
 
-			<div
-				alt="Pokedex Buttons"
-				class="buttons--area"
-			>
-				<button
-					alt="Pokedex Previous Button"
-					class="button bttn--prev"
-				>
+			<div alt="Pokedex Buttons" class="buttons-area">
+				<button alt="Pokedex Previous Button" class="button bttn-prev">
 					&lt; Prev
 				</button>
-				<button
-					alt="Pokedex Next Button"
-					class="button bttn--next"
-				>
+
+				<button alt="Pokedex Next Button" class="button bttn-next">
 					Next &gt;
 				</button>
 			</div>
@@ -107,7 +66,4 @@
 	</body>
 </html>
 
-<script
-	defer
-	src="./js/pokedex.js"
-></script>
+<script defer src="./js/pokedex.js"></script>
