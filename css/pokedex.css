@@ -65,7 +65,7 @@ main {
 }
 
 .sound-button:active {
-  box-shadow: inset -1px -1px 0 #222;
+	box-shadow: inset -1px -1px 0 #222;
 }
 
 .sound-status {
@@ -201,7 +201,7 @@ main {
 }
 
 a {
-  color: #222;
-  font-weight: 500;
-  text-decoration: none;
+	color: #222;
+	font-weight: 500;
+	text-decoration: none;
 }

@@ -41,13 +41,6 @@ const formatNumber = (number) => {
 		: `${number}`;
 };
 
-const loadingRender = () => {
-	pokemonImage.src = `./img/loading.webp`;
-	pokemonType.textContent = '';
-	pokemonName.textContent = `Loading...`;
-	pokemonNumber.textContent = `#xxxx`;
-};
-
 const pokemonNotFounded = () => {
 	pokemonImage.style.display = 'none';
 	pokemonImage.src = '';
@@ -56,46 +49,55 @@ const pokemonNotFounded = () => {
 };
 
 const renderSprites = (pokemon) => {
-	const sprite = pokemon['sprites']['front_default'];
+  const sprite = pokemon['sprites']['front_default'];
 	pokemonImage.style.display = 'block';
 	pokemonImage.src = sprite;
 };
 
 const renderData = (id, name) => {
-	if (id) {
-		pokemonNumber.textContent = `#${id}`;
+  if (id) {
+    pokemonNumber.textContent = `#${id}`;
 		pokemonName.textContent = `${name}`;
 	}
-
+  
 	if (!id || id > 1025) {
-		pokemonNumber.textContent = '';
+    pokemonNumber.textContent = '';
 		pokemonName.textContent = '';
 	}
 };
 
 const renderType = async (pokemon) => {
-	const data = await fetchPokemon(pokemon);
+  const data = await fetchPokemon(pokemon);
 	const types = data['types'];
 	const typeNames = types.map((slot) => slot['type']['name']);
-
+  
 	for (let type of typeNames) {
-		pokemonType.innerHTML += `
+    pokemonType.innerHTML += `
     <img src="img/icons/${type}.svg" alt="pokemon type" class="pokemon-type">
     `;
 	}
 };
 
-const renderPokemon = async (pokemon = 1) => {
-	loadingRender();
-	const data = await fetchPokemon(pokemon);
+const renderLoading = () => {
+  pokemonImage.style.display = 'block';
+  pokemonImage.src = `./img/loading.webp`;
+	pokemonType.textContent = '';
+	pokemonName.textContent = `Loading...`;
+	pokemonNumber.textContent = `#xxxx`;
+}
 
+const renderPokemon = async (pokemon = 1) => {
+  renderLoading();
+  
+	const data = await fetchPokemon(pokemon);
+  
 	if (data && data.id <= 1025) {
-		renderSprites(data);
+    renderSprites(data);
 		renderData(formatNumber(data.id), data.species.name);
 		renderType(pokemon);
 		playCrieOnRender(data);
 	} else {
-		pokemonNotFounded();
+    pokemonNotFounded();
 	}
 };
 
@@ -110,12 +112,14 @@ form.addEventListener('submit', (event) => {
 buttonPrev.addEventListener('click', () => {
 	if (searchedPokemon > 1) {
 		searchedPokemon--;
-		renderPokemon(searchedPokemon);
 	}
+	renderPokemon(searchedPokemon);
 });
 
 buttonNext.addEventListener('click', () => {
-	searchedPokemon++;
+	if (searchedPokemon < 1025) {
+		searchedPokemon++;
+	}
 	renderPokemon(searchedPokemon);
 });
 
