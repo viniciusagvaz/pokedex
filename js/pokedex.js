@@ -93,7 +93,7 @@ const renderPokemon = async (pokemon = 1) => {
 	loadingRender();
 	const data = await fetchPokemon(pokemon);
 
-	if (data) {
+	if (data && data.id <= 1025) {
 		renderSprites(data);
 		renderData(formatNumber(data.id), data.species.name);
 		renderType(pokemon);
