@@ -69,7 +69,7 @@ const renderPokemon = async (pokemon = 1) => {
     input.value = '';
     searchPokemon = data.id;
   } else {
-    pokemonImage.src = './img/exclamation.gif';
+    pokemonImage.src = '';
     pokemonType.innerHTML = 'x';
     renderData('xxxx', 'Not found');
   }
