@@ -10,10 +10,8 @@ const input = document.querySelector('.input-search');
 const buttonPrev = document.querySelector('.bttn-prev');
 const buttonNext = document.querySelector('.bttn-next');
 
-
 let searchedPokemon;
 let volume = 0.1;
-
 
 const fetchPokemon = async (pokemon) => {
 	const APIResponse = await fetch(
@@ -26,7 +24,6 @@ const fetchPokemon = async (pokemon) => {
 		return data;
 	}
 };
-
 
 const playCrieOnRender = (pokemon) => {
 	let crie = pokemon['cries']['latest'];
@@ -57,7 +54,6 @@ const pokemonNotFounded = () => {
 	pokemonType.textContent = 'x';
 	renderData('xxxx', 'Not found');
 };
-
 
 const renderSprites = (pokemon) => {
 	const sprite = pokemon['sprites']['front_default'];
@@ -102,7 +98,6 @@ const renderPokemon = async (pokemon = 1) => {
 		pokemonNotFounded();
 	}
 };
-
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
