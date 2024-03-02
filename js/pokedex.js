@@ -1,4 +1,5 @@
 const pokemonImage = document.querySelector('.pokemon-image');
+const pokemonNumber = document.querySelector('.pokemon-number');
 const pokemonName = document.querySelector('.pokemon-name');
 const pokemonType = document.querySelector('.pokemon-type');
 
@@ -22,7 +23,6 @@ const fetchPokemon = async (pokemon) => {
 };
 
 const renderData = async (id, name) => {
-  const pokemonNumber = document.querySelector('.pokemon-number');
 
   if (id) {
     pokemonNumber.innerHTML = `#${id}`;
@@ -57,6 +57,7 @@ const renderPokemon = async (pokemon = 1) => {
   pokemonImage.src = `./img/loading.gif`;
   pokemonType.innerHTML = '';
   pokemonName.innerHTML = `Loading...`;
+  pokemonNumber.innerHTML = ``;
 
   const data = await fetchPokemon(pokemon);
 
@@ -69,6 +70,7 @@ const renderPokemon = async (pokemon = 1) => {
     input.value = '';
     searchPokemon = data.id;
   } else {
+    pokemonImage.style.display = 'none';
     pokemonImage.src = '';
     pokemonType.innerHTML = 'x';
     renderData('xxxx', 'Not found');
