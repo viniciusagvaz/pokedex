@@ -34,6 +34,50 @@ main {
 	height: 100%;
 }
 
+.sound-position {
+	position: absolute;
+	top: 16%;
+	left: 61%;
+}
+
+.sound-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.5rem;
+
+	padding: 0.2rem 0.2rem 0.3rem 0.2rem;
+	background-color: #8c0928;
+
+	border: 1px solid #222;
+	border-radius: 2px;
+	border-end-end-radius: 10px;
+}
+
+.sound-button {
+	color: #ffffff;
+
+	background-color: #444;
+	padding: 0.1rem 0.2rem;
+
+	border: 2px solid #000;
+	border-radius: 2px;
+}
+
+.sound-button:active {
+  box-shadow: inset -1px -1px 0 #222;
+}
+
+.sound-status {
+	width: 0.6rem;
+	height: 0.6rem;
+
+	background-color: #8df15a;
+
+	border-radius: 100%;
+	border: 2px solid #444;
+}
+
 .pokemon-image {
 	position: absolute;
 	left: 50%;

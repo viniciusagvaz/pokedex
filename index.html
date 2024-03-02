@@ -1,69 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link
-			rel="shortcut icon"
-			href="./img/pokedex-fav.ico"
-			type="image/x-icon"
-		/>
-		<link rel="stylesheet" href="./css/pokedex.css" />
 
-		<title>Pokedex</title>
-	</head>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="./img/pokedex-fav.ico" type="image/x-icon" />
+  <link rel="stylesheet" href="./css/pokedex.css" />
 
-	<body>
-		<main>
-			<img src="./img/pokedex.webp" alt="pokedex" class="pokedex" />
-			<audio
-				src=""
-				alt="Pokemon Sound"
-				type="pokemon cry"
-				autoplay
-				class="pokemon-crie"
-			></audio>
+  <title>Pokedex</title>
+</head>
 
-			<div alt="Pokedex Screen" class="pokedex-screen">
-				<img src="#" alt="Pokemon Image" class="pokemon-image" />
-			</div>
+<body> 
+  <audio src="" alt="Pokemon Sound" type="pokemon cry" autoplay
+  class="pokemon-crie"></audio>
 
-			<div alt="Pokemon Data" class="pokemon-data">
-				<div class="number-name-container">
-					<span alt="Pokemon Number" class="pokemon-number"></span>
-					<span alt="Pokemon Name" class="pokemon-name"></span>
-				</div>
-				
-        <div class="pokemon-type-container">
-					<span alt="Pokemon Type" class="pokemon-type"></span>
-				</div>
-			</div>
+  <main>
+    <img src="./img/pokedex.webp" alt="pokedex" class="pokedex" />
 
-			<form alt="Search Form" id="form" class="form">
-				<input
-					alt="Search Input"
-					id="input-search"
-					type="search"
-					class="input-search"
-					placeholder="Name or Number"
-					required
-				/>
-			</form>
+    <div alt="Sound Controller Position" class="sound-position">
+      <div alt="Sound Controller Container" class='sound-container'>
+        <button alt="Sound Power Button" class="sound-button">Sound</button>
+        <span alt="Sound Status Light" class="sound-status"></span>
+      </div>
+    </div>
 
-			<div alt="Pokedex Buttons" class="buttons-area">
-				<button alt="Pokedex Previous Button" class="button bttn-prev">
-					&lt; Prev
-				</button>
+    <div alt="Pokedex Screen" class="pokedex-screen">
+      <img src="#" alt="Pokemon Image" class="pokemon-image" />
+    </div>
 
-				<button alt="Pokedex Next Button" class="button bttn-next">
-					Next &gt;
-				</button>
-			</div>
-		</main>
+    <div alt="Pokemon Data" class="pokemon-data">
+      <div class="number-name-container">
+        <span alt="Pokemon Number" class="pokemon-number"></span>
+        <span alt="Pokemon Name" class="pokemon-name"></span>
+      </div>
 
-		<footer>Desenvolvido por Vinícius Vaz</footer>
-	</body>
+      <div class="pokemon-type-container">
+        <span alt="Pokemon Type" class="pokemon-type"></span>
+      </div>
+    </div>
+
+    <form alt="Search Form" id="form" class="form">
+      <input alt="Search Input" id="input-search" type="search"
+        class="input-search" placeholder="Name or Number" required />
+    </form>
+
+    <div alt="Pokedex Buttons" class="buttons-area">
+      <button alt="Pokedex Previous Button" class="button bttn-prev">
+        &lt; Prev
+      </button>
+
+      <button alt="Pokedex Next Button" class="button bttn-next">
+        Next &gt;
+      </button>
+    </div>
+  </main>
+
+  <footer>Desenvolvido por Vinícius Vaz</footer>
+</body>
+
 </html>
 
 <script defer src="./js/pokedex.js"></script>
