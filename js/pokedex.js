@@ -45,7 +45,7 @@ const formatNumber = (number) => {
 };
 
 const loadingRender = () => {
-	pokemonImage.src = `./img/loading.gif`;
+	pokemonImage.src = `./img/loading.webp`;
 	pokemonType.textContent = '';
 	pokemonName.textContent = `Loading...`;
 	pokemonNumber.textContent = `#xxxx`;

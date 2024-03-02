@@ -1,7 +1,7 @@
 Pokedex V1
 ==========
 
-![image](https://raw.githubusercontent.com/viniciusagvaz/pokedex/main/img/screenshot.jpeg)
+![image](https://raw.githubusercontent.com/viniciusagvaz/pokedex/main/img/screenshot.webp)
 
 ### English
  _**Deploy: [https://viniciusagvaz.github.io/pokedex/](https://viniciusagvaz.github.io/pokedex/)**_
