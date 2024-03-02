@@ -3,7 +3,7 @@ Pokedex V1
 
 ![image](https://raw.githubusercontent.com/viniciusagvaz/pokedex/main/img/screenshot.webp)
 
-### English
+## English
  _**Deploy: [https://viniciusagvaz.github.io/pokedex/](https://viniciusagvaz.github.io/pokedex/)**_
 
 ### This is a Pokedex similar to the original anime design
