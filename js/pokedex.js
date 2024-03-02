@@ -1,17 +1,19 @@
+const buttonSound = document.querySelector('.sound-button');
+const pokemonCrie = document.querySelector('.pokemon-crie');
 const pokemonImage = document.querySelector('.pokemon-image');
 const pokemonNumber = document.querySelector('.pokemon-number');
 const pokemonName = document.querySelector('.pokemon-name');
 const pokemonType = document.querySelector('.pokemon-type');
-const pokemonCrie = document.querySelector('.pokemon-crie');
-const buttonSound = document.querySelector('.sound-button');
 
 const form = document.querySelector('.form');
 const input = document.querySelector('.input-search');
 const buttonPrev = document.querySelector('.bttn-prev');
 const buttonNext = document.querySelector('.bttn-next');
 
+
 let searchedPokemon;
 let volume = 0.1;
+
 
 const fetchPokemon = async (pokemon) => {
 	const APIResponse = await fetch(
@@ -25,49 +27,6 @@ const fetchPokemon = async (pokemon) => {
 	}
 };
 
-const renderData = (id, name) => {
-	if (id) {
-		pokemonNumber.textContent = `#${id}`;
-		pokemonName.textContent = `${name}`;
-	}
-
-	if (!id || id > 1025) {
-		pokemonNumber.textContent = '';
-		pokemonName.textContent = '';
-	}
-};
-
-const renderType = async (pokemon) => {
-	const data = await fetchPokemon(pokemon);
-	const types = data['types'];
-	const typeNames = types.map((slot) => slot['type']['name']);
-
-	for (let type of typeNames) {
-		pokemonType.innerHTML += `
-    <img src="img/icons/${type}.svg" alt="pokemon type" class="pokemon-type">
-    `;
-	}
-};
-
-const renderSprites = (pokemon) => {
-	const sprite = pokemon['sprites']['front_default'];
-	pokemonImage.style.display = 'block';
-	pokemonImage.src = sprite;
-};
-
-const renderPokemon = async (pokemon = 1) => {
-	loadingRender();
-	const data = await fetchPokemon(pokemon);
-
-	if (data) {
-		renderSprites(data);
-		renderData(formatNumber(data.id), data.species.name);
-		renderType(pokemon);
-		playCrieOnRender(data);
-	} else {
-		pokemonNotFounded();
-	}
-};
 
 const playCrieOnRender = (pokemon) => {
 	let crie = pokemon['cries']['latest'];
@@ -98,6 +57,52 @@ const pokemonNotFounded = () => {
 	pokemonType.textContent = 'x';
 	renderData('xxxx', 'Not found');
 };
+
+
+const renderSprites = (pokemon) => {
+	const sprite = pokemon['sprites']['front_default'];
+	pokemonImage.style.display = 'block';
+	pokemonImage.src = sprite;
+};
+
+const renderData = (id, name) => {
+	if (id) {
+		pokemonNumber.textContent = `#${id}`;
+		pokemonName.textContent = `${name}`;
+	}
+
+	if (!id || id > 1025) {
+		pokemonNumber.textContent = '';
+		pokemonName.textContent = '';
+	}
+};
+
+const renderType = async (pokemon) => {
+	const data = await fetchPokemon(pokemon);
+	const types = data['types'];
+	const typeNames = types.map((slot) => slot['type']['name']);
+
+	for (let type of typeNames) {
+		pokemonType.innerHTML += `
+    <img src="img/icons/${type}.svg" alt="pokemon type" class="pokemon-type">
+    `;
+	}
+};
+
+const renderPokemon = async (pokemon = 1) => {
+	loadingRender();
+	const data = await fetchPokemon(pokemon);
+
+	if (data) {
+		renderSprites(data);
+		renderData(formatNumber(data.id), data.species.name);
+		renderType(pokemon);
+		playCrieOnRender(data);
+	} else {
+		pokemonNotFounded();
+	}
+};
+
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
