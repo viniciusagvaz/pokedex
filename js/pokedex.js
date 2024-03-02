@@ -61,7 +61,7 @@ const renderPokemon = async (pokemon = 1) => {
 
 	if (data) {
 		renderSprites(data);
-		renderData(formatNumber(pokemon), data.name);
+		renderData(formatNumber(data.id), data.species.name);
 		renderType(pokemon);
 		playCrieOnRender(data);
 	} else {
