@@ -13,6 +13,7 @@ const buttonNext = document.querySelector('.bttn-next');
 let searchedPokemon;
 let volume = 0.1;
 
+
 const fetchPokemon = async (pokemon) => {
 	const APIResponse = await fetch(
 		`https://pokeapi.co/api/v2/pokemon/${pokemon}/`
@@ -24,6 +25,8 @@ const fetchPokemon = async (pokemon) => {
 		return data;
 	}
 };
+
+
 
 const playCrieOnRender = (pokemon) => {
 	const crie = pokemon['cries']['latest'];
@@ -44,6 +47,8 @@ const pokemonNotFounded = () => {
 	renderData('xxxx', 'Not found');
 };
 
+
+
 const renderSprites = (pokemon) => {
 	const sprite = pokemon.sprites.front_default;
 	pokemonImage.style.display = 'block';
@@ -56,8 +61,8 @@ const renderData = (id, name) => {
 };
 
 const renderType = async (dataPokemon) => {
-	const types = dataPokemon['types'];
-	const typeNames = types.map((slot) => slot['type']['name']);
+	const types = dataPokemon.types;
+	const typeNames = types.map((slot) => slot.type.name)
 
 	for (let type of typeNames) {
 		pokemonType.innerHTML += `
@@ -92,6 +97,8 @@ const renderPokemon = async (numeroPokemon = 1) => {
 		pokemonNotFounded();
 	}
 };
+
+
 
 form.addEventListener('submit', (event) => {
 	event.preventDefault();
