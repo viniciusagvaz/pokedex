@@ -20,84 +20,76 @@ const fetchPokemon = async (pokemon) => {
 
 	if (APIResponse.status === 200) {
 		const data = await APIResponse.json();
-		searchedPokemon = data.id;
+		searchedPokemon = pokemon;
 		return data;
 	}
 };
 
 const playCrieOnRender = (pokemon) => {
-	let crie = pokemon['cries']['latest'];
+	const crie = pokemon['cries']['latest'];
+
 	pokemonCrie.src = `${crie}`;
 	pokemonCrie.volume = volume;
 };
 
-const formatNumber = (number) => {
-	return number < 10
-		? `000${number}`
-		: `${number}` && number < 100
-		? `00${number}`
-		: `${number}` && number < 1000
-		? `0${number}`
-		: `${number}`;
-};
+const formatNumberToString = (number) => {
+	return String(number).padStart(4, '0')
+}
 
 const pokemonNotFounded = () => {
 	pokemonImage.style.display = 'none';
 	pokemonImage.src = '';
 	pokemonType.textContent = 'x';
+
 	renderData('xxxx', 'Not found');
 };
 
 const renderSprites = (pokemon) => {
-  const sprite = pokemon['sprites']['front_default'];
+	const sprite = pokemon.sprites.front_default;
 	pokemonImage.style.display = 'block';
 	pokemonImage.src = sprite;
 };
 
 const renderData = (id, name) => {
-  if (id) {
-    pokemonNumber.textContent = `#${id}`;
-		pokemonName.textContent = `${name}`;
-	}
-  
-	if (!id || id > 1025) {
-    pokemonNumber.textContent = '';
-		pokemonName.textContent = '';
-	}
+		pokemonNumber.textContent = `#${id}`;
+		pokemonName.textContent = `${name}`
 };
 
-const renderType = async (pokemon) => {
-  const data = await fetchPokemon(pokemon);
-	const types = data['types'];
+const renderType = async (dataPokemon) => {
+	const types = dataPokemon['types'];
 	const typeNames = types.map((slot) => slot['type']['name']);
-  
+
 	for (let type of typeNames) {
-    pokemonType.innerHTML += `
+		pokemonType.innerHTML += `
     <img src="img/icons/${type}.svg" alt="pokemon type" class="pokemon-type">
     `;
 	}
 };
 
 const renderLoading = () => {
-  pokemonImage.style.display = 'block';
-  pokemonImage.src = `./img/loading.webp`;
+	pokemonImage.style.display = 'block';
+	pokemonImage.src = `./img/loading.webp`;
 	pokemonType.textContent = '';
 	pokemonName.textContent = `Loading...`;
 	pokemonNumber.textContent = `#xxxx`;
-}
+};
 
-const renderPokemon = async (pokemon = 1) => {
-  renderLoading();
-  
-	const data = await fetchPokemon(pokemon);
-  
-	if (data && data.id <= 1025) {
-    renderSprites(data);
-		renderData(formatNumber(data.id), data.species.name);
-		renderType(pokemon);
-		playCrieOnRender(data);
+const renderPokemon = async (numeroPokemon = 1) => {
+	renderLoading();
+
+	const dataPokemon = await fetchPokemon(numeroPokemon);
+
+	if (dataPokemon && dataPokemon.id <= 1025) {
+		renderSprites(dataPokemon);
+
+		renderData(formatNumberToString(dataPokemon.id), dataPokemon.species.name);
+    
+		renderType(dataPokemon);
+
+		playCrieOnRender(dataPokemon);
+
 	} else {
-    pokemonNotFounded();
+		pokemonNotFounded();
 	}
 };
 
@@ -113,6 +105,7 @@ buttonPrev.addEventListener('click', () => {
 	if (searchedPokemon > 1) {
 		searchedPokemon--;
 	}
+
 	renderPokemon(searchedPokemon);
 });
 
@@ -120,16 +113,16 @@ buttonNext.addEventListener('click', () => {
 	if (searchedPokemon < 1025) {
 		searchedPokemon++;
 	}
+
 	renderPokemon(searchedPokemon);
 });
 
 buttonSound.addEventListener('click', () => {
 	const status = document.querySelector('.sound-status');
-	volume = !volume;
-	volume ? (volume = 0.1) : volume;
-	volume
-		? (status.style.backgroundColor = '#9ffe58')
-		: (status.style.backgroundColor = '#222');
+  
+  volume = !volume ? 0.1 : 0;
+	status.style.backgroundColor = volume ? '#9ffe58' : '#222';
 });
+
 
 renderPokemon();
