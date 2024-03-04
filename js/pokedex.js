@@ -21,7 +21,7 @@ const fetchPokemon = async (pokemon) => {
 
 	if (APIResponse.status === 200) {
 		const data = await APIResponse.json();
-		searchedPokemon = pokemon;
+		searchedPokemon = data.id;
 		return data;
 	}
 };
@@ -79,22 +79,22 @@ const renderLoading = () => {
 	pokemonNumber.textContent = `#xxxx`;
 };
 
-const renderPokemon = async (numeroPokemon = 1) => {
+const renderPokemon = async (pokemon = 1) => {
 	renderLoading();
 
-	const dataPokemon = await fetchPokemon(numeroPokemon);
-
+	const dataPokemon = await fetchPokemon(pokemon);
+  
 	if (dataPokemon && dataPokemon.id <= 1025) {
-		renderSprites(dataPokemon);
-
+    renderSprites(dataPokemon);
+    
 		renderData(formatNumberToString(dataPokemon.id), dataPokemon.species.name);
     
 		renderType(dataPokemon);
-
+    
 		playCrieOnRender(dataPokemon);
-
+    
 	} else {
-		pokemonNotFounded();
+    pokemonNotFounded();
 	}
 };
 
