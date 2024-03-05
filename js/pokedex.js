@@ -51,6 +51,7 @@ const pokemonNotFounded = () => {
 
 const renderSprites = (pokemon) => {
 	const sprite = pokemon.sprites.front_default;
+  pokemonImage.alt= `${pokemon.name} image`
 	pokemonImage.style.display = 'block';
 	pokemonImage.src = sprite;
 };
@@ -66,7 +67,7 @@ const renderType = async (dataPokemon) => {
 
 	for (let type of typeNames) {
 		pokemonType.innerHTML += `
-    <img src="img/icons/${type}.svg" alt="pokemon type" class="pokemon-type">
+    <img src="img/icons/${type}.svg" alt="Pokemon Type is: ${type}" class="pokemon-type">
     `;
 	}
 };
@@ -74,6 +75,7 @@ const renderType = async (dataPokemon) => {
 const renderLoading = () => {
 	pokemonImage.style.display = 'block';
 	pokemonImage.src = `./img/loading.webp`;
+	pokemonImage.alt = `Loading...`;
 	pokemonType.textContent = '';
 	pokemonName.textContent = `Loading...`;
 	pokemonNumber.textContent = `#xxxx`;
