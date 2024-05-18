@@ -1,65 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="./img/pokedex-fav.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="./css/pokedex.css" />
 
-<head>
-  <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" href="./img/pokedex-fav.ico" type="image/x-icon" />
-  <link rel="stylesheet" href="./css/pokedex.css" />
+    <title>Pokedex</title>
+  </head>
 
-  <title>Pokedex</title>
-</head>
+  <body>
+    <audio
+      src=""
+      alt="Pokemon Sound"
+      type="pokemon cry"
+      autoplay
+      class="pokemon-crie"
+    ></audio>
 
-<body> 
-  <audio src="" alt="Pokemon Sound" type="pokemon cry" autoplay
-  class="pokemon-crie"></audio>
+    <main>
+      <img src="./img/pokedex.webp" alt="pokedex" id="pokedex" />
 
-  <main>
-    <img src="./img/pokedex.webp" alt="pokedex" class="pokedex" />
+      <section alt="Sound Controller Position" id="sound-container">
+        <div alt="Sound Controller Container" class="sound-button__position">
+          <button alt="Sound Power Button" class="sound-button">Sound</button>
+          <span alt="Sound Status Light" class="sound-status"></span>
+        </div>
+      </section>
 
-    <div alt="Sound Controller Position" class="sound-position">
-      <div alt="Sound Controller Container" class='sound-container'>
-        <button alt="Sound Power Button" class="sound-button">Sound</button>
-        <span alt="Sound Status Light" class="sound-status"></span>
-      </div>
-    </div>
+      <section alt="Pokedex Screen" id="pokedex-screen__container">
+        <img src="#" alt="Pokemon Image" class="pokedex-screen__sprite" />
+      </section>
 
-    <div alt="Pokedex Screen" class="pokedex-screen">
-      <img src="#" alt="Pokemon Image" class="pokemon-image" />
-    </div>
+      <section alt="Pokemon Data" id="pokemon-data__container">
+        <div class="pokemon-data">
+          <span alt="Pokemon Number" class="pokemon-data__number"></span>
+          <span alt="Pokemon Name" class="pokemon-data__name"></span>
+        </div>
+        
+        <div class="">
+          <span alt="Pokemon Type" class="pokemon-data__type"> </span>
+        </div>
+      </section>
 
-    <div alt="Pokemon Data" class="pokemon-data">
-      <div class="number-name-container">
-        <span alt="Pokemon Number" class="pokemon-number"></span>
-        <span alt="Pokemon Name" class="pokemon-name"></span>
-      </div>
+      <section alt="Pokemon Form" id="form__container">
+        <form alt="Search Form" id="form" class="form">
+          <input
+            alt="Search Input"
+            id="form-input"
+            type="search"
+            class="input-search"
+            placeholder="Name or Number"
+            required
+          />
+        </form>
+      </section>
 
-      <div class="pokemon-type-container">
-        <span alt="Pokemon Type" class="pokemon-type">
-        </span>
-      </div>
-    </div>
- 
-    <form alt="Search Form" id="form" class="form">
-      <input alt="Search Input" id="input-search" type="search"
-        class="input-search" placeholder="Name or Number" required />
-    </form>
+      <section alt="Pokedex Buttons" id="pokedex-button__container">
+        <button alt="Pokedex Previous Button" class="button button-prev">
+          &lt; Prev
+        </button>
 
-    <div alt="Pokedex Buttons" class="buttons-area">
-      <button alt="Pokedex Previous Button" class="button bttn-prev">
-        &lt; Prev
-      </button>
+        <button alt="Pokedex Previous Button" class="button button-search">
+          Search
+        </button>
 
-      <button alt="Pokedex Next Button" class="button bttn-next">
-        Next &gt;
-      </button>
-    </div>
-  </main>
+        <button alt="Pokedex Next Button" class="button button-next">
+          Next &gt;
+        </button>
+      </section>
+    </main>
 
-  <footer><a href="https://github.com/viniciusagvaz">Desenvolvido por Vinícius Vaz</a></footer>
-</body>
-
+    <footer>
+      <a href="https://github.com/viniciusagvaz">Desenvolvido por Vinícius Vaz<a>
+    </footer>
+  </body>
 </html>
 
 <script defer src="./js/pokedex.js"></script>

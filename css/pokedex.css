@@ -1,207 +1,213 @@
-@import url('https://fonts.googleapis.com/css2?family=Oxanium:wght@100;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@100;300;400;500;600;700&display=swap");
 
 * {
-	margin: 0;
-	padding: 0;
-	font-size: 1rem;
-	box-sizing: border-box;
-	font-family: 'Oxanium', cursive;
+  margin: 0;
+  padding: 0;
+  font-size: 1rem;
+  box-sizing: border-box;
+  font-family: "Oxanium", cursive;
 }
 
 body {
-	min-height: 100vh;
-	text-align: center;
+  min-height: 100vh;
+  text-align: center;
 
-	background-image: url('../img/background/pokedex-bg.webp');
-	background-repeat: no-repeat;
-	background-size: cover;
+  background-image: url("../img/background/pokedex-bg.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 main {
-	position: relative;
-	display: inline-block;
-	padding: 0.9375rem;
+  position: relative;
+  display: inline-block;
+  padding: 0.9375rem;
 }
 
-.pokedex {
-	max-width: 41.6875rem;
+#pokedex {
+  max-width: 41.6875rem;
 
-	display: flex;
-	justify-content: center;
-	align-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
-.sound-position {
-	position: absolute;
-	top: 16%;
-	left: 61%;
+
+
+
+#sound-container {
+  position: absolute;
+  top: 16%;
+  left: 61%;
 }
 
-.sound-container {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	gap: 0.5rem;
+.sound-button__position {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 
-	padding: 0.2rem 0.2rem 0.3rem 0.2rem;
-	background-color: #8c0928;
+  padding: 0.2rem 0.2rem 0.3rem 0.2rem;
+  background-color: #8c0928;
 
-	border: 1px solid #222;
-	border-radius: 2px;
-	border-end-end-radius: 10px;
+  border: 1px solid #222;
+  border-radius: 2px;
+  border-end-end-radius: 10px;
 }
 
 .sound-button {
-	color: #ffffff;
+  color: #ffffff;
 
-	background-color: #444;
-	padding: 0.1rem 0.2rem;
+  background-color: #444;
+  padding: 0.1rem 0.2rem;
 
-	border: 2px solid #000;
-	border-radius: 2px;
+  border: 2px solid #000;
+  border-radius: 2px;
 }
 
 .sound-button:active {
-	box-shadow: inset -1px -1px 0 #222;
+  box-shadow: inset -1px -1px 0 #222;
 }
 
 .sound-status {
-	width: 0.6rem;
-	height: 0.6rem;
+  width: 0.6rem;
+  height: 0.6rem;
 
-	background-color: #8df15a;
+  background-color: #8df15a;
 
-	border-radius: 100%;
-	border: 2px solid #444;
+  border-radius: 100%;
+  border: 2px solid #444;
 }
 
-.pokemon-image {
-	position: absolute;
-	left: 50%;
-	bottom: 52%;
-	transform: translate(-63%, 20%);
 
-	width: 30%;
+
+.pokedex-screen__sprite {
+  position: absolute;
+  left: 50%;
+  bottom: 52%;
+  transform: translate(-63%, 20%);
+
+  width: 30%;
+}
+
+
+
+
+#pokemon-data__container {
+  position: absolute;
+  top: 54%;
+  right: 26%;
+
+  min-width: 11.5rem;
+  height: 2.5rem;
+  padding: 0.2rem 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  color: #aaa;
+
+  background-color: #222;
+  border-radius: 4px;
+  border: 2px solid #444;
 }
 
 .pokemon-data {
-	position: absolute;
-	top: 54%;
-	right: 26%;
-
-	min-width: 11.5rem;
-	height: 2.5rem;
-	padding: 0.2rem 0.5rem;
-
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-
-	color: #aaa;
-
-	background-color: #222;
-	border-radius: 4px;
-	border: 2px solid #444;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-weight: 600;
 }
 
-.number-name-container {
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	font-weight: 600;
+.pokemon-data__number {
+  font-style: italic;
+  font-size: 0.7rem;
 }
 
-.pokemon-number {
-	font-style: italic;
-	font-size: 0.7rem;
+.pokemon-data__name {
+  color: #aaa;
+  font-size: 1.1rem;
+  text-transform: capitalize;
 }
 
-.pokemon-name {
-	color: #aaa;
-	font-size: 1.1rem;
-	text-transform: capitalize;
+.pokemon-data__type {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  width: 2.4rem;
+  height: 2rem;
+
+  background-color: #111;
+  border-radius: 4px;
+  border: 2px solid #444;
 }
 
-.pokemon-type {
-	display: flex;
-	justify-content: space-evenly;
-	align-items: center;
+.pokemon-data__type img {
+  width: 0.9rem;
+  height: 0.9rem;
 
-	width: 2.4rem;
-	height: 2rem;
-
-	background-color: #111;
-	border-radius: 4px;
-	border: 2px solid #444;
+  border: none;
 }
 
-.pokemon-type img {
-	width: 0.9rem;
-	height: 0.9rem;
-
-	border: none;
+#form {
+  position: absolute;
+  left: 13.5%;
+  top: 69%;
+  width: 66%;
 }
 
-.form {
-	position: absolute;
-	left: 13.5%;
-	top: 69%;
-	width: 66%;
+#form-input {
+  width: 100%;
+  padding: 4%;
+
+  font-size: clamp(0.5rem, 5vw, 1rem);
+  font-weight: 600;
+  color: #709cc3;
+
+  border: 2px solid #333;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
 }
 
-.input-search {
-	width: 100%;
-	padding: 4%;
 
-	font-size: clamp(0.5rem, 5vw, 1rem);
-	font-weight: 600;
-	color: #709cc3;
 
-	border: 2px solid #333;
-	border-radius: 5px;
-	outline: none;
-	box-shadow: -3px 4px 0 #888, -5px 7px 0 #333;
-}
 
-.buttons-area {
-	position: absolute;
-	left: 51%;
-	bottom: 11.2%;
+#pokedex-button__container {
+  position: absolute;
+  left: 51%;
+  bottom: 11.2%;
 
-	display: flex;
-	gap: 0.6rem;
+  display: flex;
+  gap: 0.6rem;
 
-	width: 63%;
-	transform: translate(-57%, 0);
+  width: 63%;
+  transform: translate(-57%, 0);
 }
 
 .button {
-	width: 50%;
-	padding: 4%;
+  width: 50%;
+  padding: 4%;
 
-	font-size: clamp(8px, 5vw, 1rem);
-	color: #ffffff;
+  font-size: clamp(8px, 5vw, 1rem);
+  color: #ffffff;
 
-	background-color: #444;
-	border: 2px solid #000;
-	box-shadow: 2px 3px 0 #222, 2px 4px 0 #000;
+  background-color: #444;
+  border: 2px solid #000;
+  box-shadow: 2px 3px 0 #222, 2px 4px 0 #000;
 }
 
-.bttn-prev:active {
-	font-size: 0.9rem;
-	box-shadow: inset 4px -4px 0 #222;
-}
-
-.bttn-next:active {
-	font-size: 0.9rem;
-	box-shadow: inset -4px -4px 0 #222;
+.button:active {
+  font-size: 0.9rem;
+  box-shadow: inset -1px -1px 0 #222;
 }
 
 a {
-	color: #222;
-	font-weight: 500;
-	text-decoration: none;
+  color: #222;
+  font-weight: 500;
+  text-decoration: none;
 }
