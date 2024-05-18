@@ -1,18 +1,16 @@
 const pokemonImage = document.querySelector(".pokedex-screen__sprite");
-
 const pokemonCries = document.querySelector(".pokemon-crie");
 const pokemonNumber = document.querySelector(".pokemon-data__number");
 const pokemonName = document.querySelector(".pokemon-data__name");
 const pokemonType = document.querySelector(".pokemon-data__type");
 
+const buttonPrev = document.querySelector(".button-prev");
+const buttonNext = document.querySelector(".button-next");
+const buttonSearch = document.querySelector(".button-search");
 const buttonSound = document.querySelector(".sound-button");
 
 const form = document.querySelector("#form");
 const input = document.querySelector("#form-input");
-
-const buttonPrev = document.querySelector(".button-prev");
-const buttonNext = document.querySelector(".button-next");
-const buttonSearch = document.querySelector(".button-search");
 
 let searchedPokemon;
 let volume = 0.1;
@@ -96,6 +94,10 @@ const renderPokemon = async (pokemon = 1) => {
     playCries(dataPokemon);
   }
 
+  buttonSearch.addEventListener("click", async () => {
+    renderLoading();
+  });
+
   input.value = "";
 };
 
@@ -105,8 +107,6 @@ form.addEventListener("submit", (event) => {
 
   renderPokemon(inputValue);
 });
-
-
 
 buttonPrev.addEventListener("click", () => {
   if (searchedPokemon > 1) {
@@ -124,20 +124,10 @@ buttonNext.addEventListener("click", () => {
   renderPokemon(searchedPokemon);
 });
 
-
-buttonSearch.addEventListener("click", () => {
-  if (searchedPokemon === searchedPokemon.id) {
-    
-    
-    renderPokemon(searchedPokemon.id);
-  }
-})
-
 buttonSound.addEventListener("click", () => {
+  const status = document.querySelector(".sound-status");
   volume = !volume ? 0.1 : 0;
   status.style.backgroundColor = volume ? "#9ffe58" : "#222";
 });
-
-
 
 renderPokemon();
