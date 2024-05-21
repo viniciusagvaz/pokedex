@@ -14,6 +14,7 @@ const pokemonSearchInput = document.querySelector("#form-input");
 let searchedPokemon;
 let volume = 0.1;
 
+
 const fetchPokemon = async (pokemon) => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
 
@@ -26,6 +27,7 @@ const fetchPokemon = async (pokemon) => {
   renderNotFound();
 };
 
+
 const getSprites = (pokemon) => {
   const sprite = pokemon.sprites.front_default;
 
@@ -33,7 +35,6 @@ const getSprites = (pokemon) => {
   pokemonSprite.style.display = "block";
   pokemonSprite.src = sprite;
 };
-
 const getType = async (pokemon) => {
   const types = pokemon.types;
   const typeNames = types.map((slot) => slot.type.name);
@@ -45,14 +46,6 @@ const getType = async (pokemon) => {
   }
 };
 
-const getData = (id, name) => {
-  const formatID = (number) => {
-    return String(number).padStart(4, "0");
-  };
-
-  pokemonNumber.textContent = `#${formatID(id)}`;
-  pokemonName.textContent = `${name}`;
-};
 
 const renderPokemon = async (pokemon = 1) => {
   renderLoadingAnimation();
@@ -62,14 +55,21 @@ const renderPokemon = async (pokemon = 1) => {
 
   if (dataPokemon && id <= 1025) {
     getSprites(dataPokemon);
-    getData(id, species.name, types);
+    renderData(id, species.name, types);
     getType(dataPokemon);
     playCry(dataPokemon);
   }
 
   pokemonSearchInput.value = "";
 };
+const renderData = (id, name) => {
+  const formatID = (number) => {
+    return String(number).padStart(4, "0");
+  };
 
+  pokemonNumber.textContent = `#${formatID(id)}`;
+  pokemonName.textContent = `${name}`;
+};
 const renderLoadingAnimation = () => {
   pokemonSprite.style.display = "block";
   pokemonSprite.src = `./img/loading.webp`;
@@ -79,14 +79,14 @@ const renderLoadingAnimation = () => {
   pokemonName.textContent = ``;
   pokemonNumber.textContent = `#Loading...`;
 };
-
 const renderNotFound = () => {
   pokemonSprite.style.display = "none";
   pokemonSprite.src = "";
   pokemonType.textContent = "?";
 
-  getData("????", "Not found");
+  renderData("????", "Not found");
 };
+
 
 const playCry = (pokemon) => {
   const cries = pokemon["cries"]["latest"];
@@ -94,6 +94,7 @@ const playCry = (pokemon) => {
   pokemonCries.src = `${cries}`;
   pokemonCries.volume = volume;
 };
+
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
