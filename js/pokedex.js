@@ -1,16 +1,15 @@
-const pokemonImage = document.querySelector(".pokedex-screen__sprite");
 const pokemonCries = document.querySelector(".pokemon-crie");
+const pokemonSprite = document.querySelector(".pokedex-screen__sprite");
 const pokemonNumber = document.querySelector(".pokemon-data__number");
 const pokemonName = document.querySelector(".pokemon-data__name");
 const pokemonType = document.querySelector(".pokemon-data__type");
 
 const buttonPrev = document.querySelector(".button-prev");
 const buttonNext = document.querySelector(".button-next");
-const buttonSearch = document.querySelector(".button-search");
-const buttonSound = document.querySelector(".sound-button");
+const buttonSound = document.querySelector(".button-sound");
 
 const form = document.querySelector("#form");
-const input = document.querySelector("#form-input");
+const pokemonSearchInput = document.querySelector("#form-input");
 
 let searchedPokemon;
 let volume = 0.1;
@@ -18,39 +17,25 @@ let volume = 0.1;
 const fetchPokemon = async (pokemon) => {
   const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}/`);
 
-  if (response.status === 200) {
+  if (response.ok) {
     const data = await response.json();
     searchedPokemon = data.id;
     return data;
   }
 
-  notFound();
+  renderNotFound();
 };
 
-const notFound = () => {
-  pokemonImage.style.display = "none";
-  pokemonImage.src = "";
-
-  renderData("xxxx", "Not found");
-};
-
-const playCries = (pokemon) => {
-  const cries = pokemon["cries"]["latest"];
-
-  pokemonCries.src = `${cries}`;
-  pokemonCries.volume = volume;
-};
-
-const renderSprites = (pokemon) => {
+const getSprites = (pokemon) => {
   const sprite = pokemon.sprites.front_default;
 
-  pokemonImage.alt = `${pokemon.name} image`;
-  pokemonImage.style.display = "block";
-  pokemonImage.src = sprite;
+  pokemonSprite.alt = `${pokemon.name} image`;
+  pokemonSprite.style.display = "block";
+  pokemonSprite.src = sprite;
 };
 
-const renderType = async (dataPokemon) => {
-  const types = dataPokemon.types;
+const getType = async (pokemon) => {
+  const types = pokemon.types;
   const typeNames = types.map((slot) => slot.type.name);
 
   for (let type of typeNames) {
@@ -60,7 +45,7 @@ const renderType = async (dataPokemon) => {
   }
 };
 
-const renderData = (id, name, type) => {
+const getData = (id, name) => {
   const formatID = (number) => {
     return String(number).padStart(4, "0");
   };
@@ -69,41 +54,54 @@ const renderData = (id, name, type) => {
   pokemonName.textContent = `${name}`;
 };
 
-const renderLoading = () => {
-  pokemonImage.style.display = "block";
-  pokemonImage.src = `./img/loading.webp`;
-  pokemonImage.alt = `Loading...`;
-
-  pokemonType.textContent = "";
-  pokemonName.textContent = `Loading...`;
-  pokemonNumber.textContent = `#xxxx`;
-};
-
 const renderPokemon = async (pokemon = 1) => {
-  renderLoading();
+  renderLoadingAnimation();
 
   const dataPokemon = await fetchPokemon(pokemon);
-  const id = dataPokemon.id;
-  const name = dataPokemon.species.name;
-  const types = dataPokemon.types;
+  const { id, species, types } = dataPokemon;
 
   if (dataPokemon && id <= 1025) {
-    renderSprites(dataPokemon);
-    renderData(id, name, types);
-    renderType(dataPokemon);
-    playCries(dataPokemon);
+    getSprites(dataPokemon);
+    getData(id, species.name, types);
+    getType(dataPokemon);
+    playCry(dataPokemon);
   }
 
-  buttonSearch.addEventListener("click", async () => {
-    renderLoading();
-  });
+  pokemonSearchInput.value = "";
+};
 
-  input.value = "";
+const renderLoadingAnimation = () => {
+  pokemonSprite.style.display = "block";
+  pokemonSprite.src = `./img/loading.webp`;
+  pokemonSprite.alt = `Loading...`;
+
+  pokemonType.textContent = "";
+  pokemonName.textContent = ``;
+  pokemonNumber.textContent = `#Loading...`;
+};
+
+const renderNotFound = () => {
+  pokemonSprite.style.display = "none";
+  pokemonSprite.src = "";
+  pokemonType.textContent = "?";
+
+  getData("????", "Not found");
+};
+
+const playCry = (pokemon) => {
+  const cries = pokemon["cries"]["latest"];
+
+  pokemonCries.src = `${cries}`;
+  pokemonCries.volume = volume;
 };
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const inputValue = input.value.toLowerCase().trim();
+  const inputValue = pokemonSearchInput.value.toLowerCase().trim();
+
+  if (inputValue === "") {
+    return renderNotFound();
+  }
 
   renderPokemon(inputValue);
 });
@@ -125,7 +123,8 @@ buttonNext.addEventListener("click", () => {
 });
 
 buttonSound.addEventListener("click", () => {
-  const status = document.querySelector(".sound-status");
+  const status = document.querySelector(".button-sound__status");
+
   volume = !volume ? 0.1 : 0;
   status.style.backgroundColor = volume ? "#9ffe58" : "#222";
 });
