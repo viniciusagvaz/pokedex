@@ -199,6 +199,11 @@ main {
   cursor: pointer;
 }
 
+.button-search img{
+ width: 1.5rem;
+ height: 1.5rem;
+}
+
 #pokedex-button__container {
   position: absolute;
   left: 51%;
