@@ -8,8 +8,6 @@ Pokedex V1
 
 ### This is a Pokedex similar to the original anime design
 
-Made it in **Vanilla JavaScript**, **HTML**, and **CSS** and it was based on _**Manual do Dev**_ original project  
-
 ### **New Features:**
 
 *   Show the previous and next Pokémon from the Pokedex
@@ -42,8 +40,6 @@ Made it in **Vanilla JavaScript**, **HTML**, and **CSS** and it was based on _**
  _**Deploy: [https://viniciusagvaz.github.io/pokedex/](https://viniciusagvaz.github.io/pokedex/)**_
 
 ### Este é um Pokédex semelhante ao design original do anime
-
-Feito em **JavaScript Puro**, **HTML** e **CSS** e foi baseado no projeto original do _**Manual do Dev**_
 
 ### **Novas características:**
 
